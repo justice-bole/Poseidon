@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private float moveSpeed = 5f;
+    private Rigidbody2D rb;
+    private Vector2 movement;
+    private Vector2 mousePos;
+    private Camera cam;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+    }
     void Update()
     {
-        
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector2.up * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(-Vector2.up * Time.deltaTime);
-        }
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector2.right * Time.deltaTime);
-        }
-        else if(Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector2.left * Time.deltaTime);
-        }
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        rb.rotation = angle;
     }
 }
