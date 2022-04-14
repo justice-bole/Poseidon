@@ -60,6 +60,7 @@ public class PlayerShoot : MonoBehaviour
             if (playerEat.IsEating) return;
             if (!_canShoot) return;
             if (_ammunitionCount <= 0) return;
+            CalculateShotCooldown();
             Shoot();
         }
     }
@@ -69,7 +70,6 @@ public class PlayerShoot : MonoBehaviour
         if(bulletCount % 20 == 0)
         {
             playerSize.DecreasePlayerScale();
-            LowerFireRate();
         }
 
         if (bulletCount % 2 == 0)
@@ -110,20 +110,30 @@ public class PlayerShoot : MonoBehaviour
         print(_ammunitionCount);
     }
 
-    private void LowerFireRate()
-    {
-        shootCD += 0.002f;
-    }
-
-    private void IncreaseFireRate()
-    {
-        shootCD -= 0.002f;
-    }
-
     private void ResetBulletCount()
     {
         if (bulletCount > 1000)
             bulletCount = 0;
+    }
+
+    private void CalculateShotCooldown()
+    {
+        if(_ammunitionCount > 750)
+        {
+            shootCD = 0.01f;
+        }
+        else if(_ammunitionCount < 750 && _ammunitionCount > 500)
+        {
+            shootCD = .04f;
+        }
+        else if(_ammunitionCount < 500 && _ammunitionCount > 250)
+        {
+            shootCD = .06f;
+        }
+        else
+        {
+            shootCD = .1f;
+        }
     }
 
 }
