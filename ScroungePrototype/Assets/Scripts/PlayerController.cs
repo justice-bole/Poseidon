@@ -5,23 +5,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float moveSpeed = 5f;
-    private Rigidbody2D rb;
-    private Vector2 movement;
-    private Vector2 mousePos;
     private Camera cam;
-    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+    
+    private Vector2 mousePos;
+    private Vector2 movement;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
     private void Update()
     {
         DefineMovement();
         GetMousePosition();
-        FlipSpriteY();
     }
 
     private void FixedUpdate()
@@ -30,17 +29,7 @@ public class PlayerController : MonoBehaviour
         FaceMousePosition();
     }
 
-    private void FlipSpriteY() //prevent sprite from swimming on its back
-    {
-        if (transform.eulerAngles.z > 90 && transform.eulerAngles.z < 270)
-        {
-            spriteRenderer.flipY = true;
-        }
-        else
-        {
-            spriteRenderer.flipY = false;
-        }
-    }
+    
 
     private void DefineMovement()
     {

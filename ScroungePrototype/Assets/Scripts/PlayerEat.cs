@@ -20,6 +20,11 @@ public class PlayerEat : MonoBehaviour
 
     private void Update()
     {
+        PlayerAnimationState();
+    }
+
+    private void PlayerAnimationState()
+    {
         if (Input.GetMouseButton(0))
         {
             if (_isEating) return;
@@ -45,7 +50,6 @@ public class PlayerEat : MonoBehaviour
         {
             suctionParticle.Stop();
         }
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
