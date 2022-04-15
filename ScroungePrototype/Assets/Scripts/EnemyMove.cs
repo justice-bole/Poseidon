@@ -4,70 +4,66 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    private bool isMovementInverted = false;
+    [SerializeField] private float movementSpeed = 2;
+
     private bool positiveXMovement = true;
-    private Rigidbody2D rb;
+    private bool positiveYMovement = true;
   
  
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+       
     }
 
     private void Update()
     {
-        if(transform.position.x > 8.25f)
+        CalculateXDirection();
+        CalculateYDirection();
+        TransformPosition();
+    }
+
+    void CalculateXDirection()
+    {
+        if (transform.position.x > 8.25f)
         {
             positiveXMovement = false;
         }
-        else if(transform.position.x < - 8.1)
+        else if (transform.position.x < -8.1)
         {
             positiveXMovement = true;
         }
     }
 
-    private void FixedUpdate()
+    void CalculateYDirection()
     {
-        if(!isMovementInverted)
+        if (transform.position.y > 3.8f)
         {
-            FixedMove();
+            positiveYMovement = false;
         }
-        else
+        else if (transform.position.y < -3.8)
         {
-            InvertMoveDirection();
-        }
-        
-    }
-
-    private void FixedMove()
-    {
-        float randomNumber = Random.Range(0f, 5f);
-        Vector2 vector2 = new Vector2(randomNumber, randomNumber);
-
-        if(positiveXMovement)
-        {
-            rb.AddForce(vector2, ForceMode2D.Force);
-        }
-        else
-        {
-            rb.AddForce(vector2, ForceMode2D.Force);
+            positiveYMovement = true;
         }
     }
 
-    private void InvertMoveDirection()
+    private void TransformPosition()
     {
-        rb.AddForce(new Vector2(Random.Range(-1f, 5f), Random.Range(-1f, -5f)), ForceMode2D.Force);
+        if(positiveYMovement && positiveXMovement)
+        {
+            transform.Translate((Vector2.right + Vector2.up) * movementSpeed * Time.deltaTime);
+        }
+        else if(!positiveYMovement && positiveXMovement)
+        {
+            transform.Translate((Vector2.right - Vector2.up) * movementSpeed * Time.deltaTime);
+        }
+        else if(positiveYMovement && !positiveXMovement)
+        {
+            transform.Translate((-Vector2.right + Vector2.up) * movementSpeed * Time.deltaTime);
+        }
+        else if (!positiveYMovement && !positiveXMovement)
+        {
+            transform.Translate((-Vector2.right - Vector2.up) * movementSpeed * Time.deltaTime);
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!isMovementInverted)
-        {
-            isMovementInverted = true;
-        }
-        else
-        {
-            isMovementInverted = false;
-        }
-    }
 }
