@@ -5,11 +5,14 @@ using UnityEngine;
 public class EnemyHit : MonoBehaviour
 {
     private EnemySize enemySize;
-    private int enemyHealth = 25;
+    private PlayerShoot playerShoot;
+    private int enemyHealth = 10;
+    private int bulletsStored;
 
     private void Awake()
     {
         enemySize = GetComponent<EnemySize>();
+        playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -17,6 +20,7 @@ public class EnemyHit : MonoBehaviour
         {
             Destroy(collision.gameObject);
             enemySize.ScaleUpEnemy();
+            bulletsStored++;
         }
 
         if(transform.localScale.x >= enemySize.MaxScale)
@@ -26,6 +30,7 @@ public class EnemyHit : MonoBehaviour
 
         if(enemyHealth <= 0)
         {
+            playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .5f);
             Destroy(gameObject);
         }
     }

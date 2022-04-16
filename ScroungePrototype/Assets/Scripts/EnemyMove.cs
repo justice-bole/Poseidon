@@ -12,7 +12,27 @@ public class EnemyMove : MonoBehaviour
  
     private void Awake()
     {
-       
+        int randomNumber = Random.Range(0, 3);
+
+        switch (randomNumber)
+        {
+            case 0: 
+                positiveXMovement = false;
+                positiveYMovement = false;
+                break;
+            case 1:
+                positiveXMovement=true;
+                positiveYMovement=false;
+                break;
+            case 2:
+                positiveXMovement=false;
+                positiveYMovement=true;
+                break;
+            default:
+                positiveXMovement=true;
+                positiveYMovement =true;
+                break;
+        }
     }
 
     private void Update()
