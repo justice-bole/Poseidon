@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
     private Camera cam;
     private Rigidbody2D rb;
-    
     private Vector2 mousePos;
     private Vector2 movement;
 
@@ -29,8 +28,6 @@ public class PlayerController : MonoBehaviour
         FaceMousePosition();
     }
 
-    
-
     private void DefineMovement()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -46,6 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
+
     private void FaceMousePosition()
     {
         Vector2 lookDir = mousePos - rb.position;

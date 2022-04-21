@@ -15,7 +15,7 @@ public class PlayerEat : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GameObject.Find("PlayerAnimation").GetComponent<Animator>();
     }
 
     private void Update()

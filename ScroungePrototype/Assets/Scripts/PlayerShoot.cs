@@ -12,10 +12,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float shootCD = .6f;
 
     private PlayerSize playerSize;
-
     private int bulletCount = 0;
-
     private int _ammunitionCount = 500;
+
     public int AmmunitionCount
     {
         get
@@ -44,7 +43,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
-        playerSize = GameObject.Find("PlayerSprite").GetComponent<PlayerSize>();
+        playerSize = GetComponent<PlayerSize>();
     }
 
     private void Update()
@@ -69,7 +68,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if(bulletCount % 20 == 0)
         {
-            playerSize.DecreasePlayerScale();
+            playerSize.DecreasePlayerScale(0.05f);
         }
 
         if (bulletCount % 2 == 0)

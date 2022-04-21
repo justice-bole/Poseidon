@@ -8,10 +8,12 @@ public class EnemyHit : MonoBehaviour
     private PlayerShoot playerShoot;
     private int enemyHealth = 10;
     private int bulletsStored;
+    private PlayerSize playerSize;
 
     private void Awake()
     {
         enemySize = GetComponent<EnemySize>();
+        playerSize = GameObject.Find("Player").GetComponent<PlayerSize>();
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,7 +32,8 @@ public class EnemyHit : MonoBehaviour
 
         if(enemyHealth <= 0)
         {
-            playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .5f);
+            playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
+            playerSize.IncreasePlayerScale(.1f);
             Destroy(gameObject);
         }
     }

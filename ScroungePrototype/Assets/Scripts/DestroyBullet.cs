@@ -8,11 +8,11 @@ public class DestroyBullet : MonoBehaviour
     private PlayerSize playerSize;
     private int bulletsEaten;
 
-
     private void Awake()
     {
+        GameObject player = GameObject.Find("Player");
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();
-        playerSize = GameObject.Find("PlayerSprite").GetComponent<PlayerSize>();
+        playerSize = GameObject.Find("Player").GetComponent<PlayerSize>();
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class DestroyBullet : MonoBehaviour
 
             if (bulletsEaten % 20 == 0)
             {
-                playerSize.IncreasePlayerScale();
+                playerSize.IncreasePlayerScale(0.01f);
             }
         }
     }

@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlayerSize : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    private float scaleMultiplier = .01f;
     private float minScale = 0.75f;
     private float maxScale = 1.25f;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GameObject.Find("PlayerAnimation").GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -19,21 +18,21 @@ public class PlayerSize : MonoBehaviour
         FlipSpriteY();
     }
 
-    public void IncreasePlayerScale()
+    public void IncreasePlayerScale(float addToScale)
     {
         Vector2 playerScale = transform.localScale;
         if(transform.localScale.x < maxScale)
         {
-            transform.localScale = new Vector2(playerScale.x + scaleMultiplier, playerScale.y + scaleMultiplier);
+            transform.localScale = new Vector2(playerScale.x + addToScale, playerScale.y + addToScale);
         }
     }
 
-    public void DecreasePlayerScale()
+    public void DecreasePlayerScale(float subFromScale)
     {
         Vector2 playerScale = transform.localScale;
         if (transform.localScale.x > minScale)
         {
-            transform.localScale = new Vector2(playerScale.x - scaleMultiplier, playerScale.y - scaleMultiplier);
+            transform.localScale = new Vector2(playerScale.x - subFromScale, playerScale.y - subFromScale);
         }
     }
 
