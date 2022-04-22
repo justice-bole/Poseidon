@@ -6,13 +6,15 @@ public class DestroyBullet : MonoBehaviour
 {
     private PlayerShoot playerShoot;
     private PlayerSize playerSize;
+    private PlayerEat playerEat;
     private int bulletsEaten;
 
     private void Awake()
     {
         GameObject player = GameObject.Find("Player");
-        playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();
-        playerSize = GameObject.Find("Player").GetComponent<PlayerSize>();
+        playerEat = player.GetComponent<PlayerEat>();
+        playerShoot = player.GetComponent<PlayerShoot>();
+        playerSize = player.GetComponent<PlayerSize>();
     }
 
     private void Update()
@@ -23,7 +25,7 @@ public class DestroyBullet : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Bullet"))
+        if(collision.gameObject.CompareTag("Bullet") && playerEat.IsEating)
         {
             Destroy(collision.gameObject);
             bulletsEaten++;
