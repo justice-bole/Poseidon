@@ -8,6 +8,8 @@ public class PlayerEat : MonoBehaviour
     private Animator animator;
     private bool _isEating = false;
     public bool IsEating { get { return _isEating; } }
+
+    private int suctionDistance = 10;
   
     [SerializeField] private ParticleSystem suctionParticle;
     [SerializeField] private PlayerShoot playerShoot;
@@ -59,7 +61,7 @@ public class PlayerEat : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Bullet") && _isEating)
             {
-                collision.transform.position = Vector2.MoveTowards(collision.transform.position, transform.position, 10 * Time.deltaTime);
+                collision.transform.position = Vector2.MoveTowards(collision.transform.position, transform.position, suctionDistance * Time.deltaTime);
             }
         }
     }

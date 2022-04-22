@@ -5,15 +5,15 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab;
-    private Vector3 spawnPoint;
+
+    [SerializeField] private float baseSpawnRate = 10;
     private bool canSpawn = true;
     private Timer timer;
-    [SerializeField] private float baseSpawnRate =10;
-
+    private Vector3 spawnPoint;
 
     private void Awake()
     {
-        timer = GameObject.Find("Timer").GetComponent<Timer>();
+        timer = GameObject.Find("TimerText").GetComponent<Timer>();
     }
 
     private void Update()

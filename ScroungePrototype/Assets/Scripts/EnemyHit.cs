@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyHit : MonoBehaviour
 {
     private EnemySize enemySize;
-    private PlayerShoot playerShoot;
     private int enemyHealth = 10;
     private int bulletsStored;
+    private PlayerShoot playerShoot;
     private PlayerSize playerSize;
 
     private void Awake()
@@ -16,6 +16,7 @@ public class EnemyHit : MonoBehaviour
         playerSize = GameObject.Find("Player").GetComponent<PlayerSize>();
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Bullet"))
