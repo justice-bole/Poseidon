@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHit : MonoBehaviour
+public class EnemyHit : MonoBehaviour, IDamageable
 {
     private EnemySize enemySize;
     private int enemyHealth = 10;
@@ -17,21 +17,17 @@ public class EnemyHit : MonoBehaviour
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Damage()
     {
-        if(collision.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(collision.gameObject);
-            enemySize.ScaleUpEnemy();
-            bulletsStored++;
-        }
+        enemySize.ScaleUpEnemy();
+        bulletsStored++;
 
-        if(transform.localScale.x >= enemySize.MaxScale)
+        if (transform.localScale.x >= enemySize.MaxScale)
         {
             enemyHealth--;
         }
 
-        if(enemyHealth <= 0)
+        if (enemyHealth <= 0)
         {
             playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
             playerSize.IncreasePlayerScale(.1f);

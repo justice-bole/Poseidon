@@ -34,12 +34,12 @@ public class PlayerEat : MonoBehaviour
         }
         else if (Input.GetMouseButton(1))
         {
-            animator.SetBool("isEating", true);
+            //animator.SetBool("isEating", true);
             _isEating = true;
         }
         else if (!Input.GetMouseButton(1))
         {
-            animator.SetBool("isEating", false);
+            //animator.SetBool("isEating", false);
             _isEating = false;
         }
 
@@ -63,14 +63,6 @@ public class PlayerEat : MonoBehaviour
             {
                 collision.transform.position = Vector2.MoveTowards(collision.transform.position, transform.position, suctionDistance * Time.deltaTime);
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet") && !_isEating)
-        {
-            print("You've been hit!");
         }
     }
 }
