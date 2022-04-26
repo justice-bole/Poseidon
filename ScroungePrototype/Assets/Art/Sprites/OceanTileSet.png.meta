@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      OceanTileSet_4: -1214107640447208188
+      OceanTileSet_5: 5447476295454064880
+      OceanTileSet_2: -7094167884510923427
+      OceanTileSet_0: -2567160110308668508
+      OceanTileSet_3: 2232750450367735300
+      OceanTileSet_1: -4901372736605344742
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

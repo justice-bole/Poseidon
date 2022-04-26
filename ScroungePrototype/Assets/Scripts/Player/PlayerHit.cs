@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHit : MonoBehaviour, IDamageable
 {
+    [SerializeField] private GameObject[] healthUIs;
     private GameObject gameOverScreen;
     private int playerHealth = 3;
     private GameObject player;
@@ -32,6 +33,14 @@ public class PlayerHit : MonoBehaviour, IDamageable
     {
         if (playerEat.IsEating) return;
         playerHealth--;
+        DecrementHealthUI();
+    }
+
+    private void DecrementHealthUI()
+    {
+        
+        
+        healthUIs[playerHealth].SetActive(false);    
     }
 
     private void DestroyPlayer()

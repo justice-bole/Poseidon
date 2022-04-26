@@ -6,7 +6,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab;
 
-    [SerializeField] private float baseSpawnRate = 10;
+    [SerializeField] private float baseSpawnRate = 7;
     private bool canSpawn = true;
     private Timer timer;
     private Vector3 spawnPoint;
@@ -41,7 +41,7 @@ public class WaveSpawner : MonoBehaviour
     private float CalculateEnemySpawnRate()
     {
         float enemySpawnRate = baseSpawnRate - (timer.CurrentTime * .1f);
-        float clampedSpawnRate = Mathf.Clamp(enemySpawnRate, 3, baseSpawnRate);
+        float clampedSpawnRate = Mathf.Clamp(enemySpawnRate, 2, baseSpawnRate);
         print("Enemy Current Spawn Rate: " + clampedSpawnRate);
         return clampedSpawnRate;
     }
