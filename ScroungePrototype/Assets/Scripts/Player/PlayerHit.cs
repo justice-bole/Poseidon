@@ -1,27 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class PlayerHit : MonoBehaviour, IDamageable
 {
     [SerializeField] private GameObject[] healthUIs;
-    private GameObject gameOverScreen;
     private int playerHealth = 3;
     private GameObject player;
     private PlayerEat playerEat;
+    private RestartManager restartManager;
+
 
     private void Awake()
     {
-        gameOverScreen = GameObject.Find("GameOverScreen");
         player = GameObject.Find("Player");
         playerEat = player.GetComponent<PlayerEat>();
-       
-    }
-
-    private void Start()
-    {
-        gameOverScreen.SetActive(false);
+        restartManager = GameObject.Find("RestartManager").GetComponent<RestartManager>();
     }
 
     private void Update()
@@ -38,8 +33,6 @@ public class PlayerHit : MonoBehaviour, IDamageable
 
     private void DecrementHealthUI()
     {
-        
-        
         healthUIs[playerHealth].SetActive(false);    
     }
 
@@ -49,35 +42,11 @@ public class PlayerHit : MonoBehaviour, IDamageable
         if(playerHealth <= 0)
         {
             Destroy(player);
-            StopTime();
-            EnableGameOverScreen();
+            restartManager.StopTime();
+            restartManager.EnableGameOverScreen();
         }
     }
 
-    private void StopTime()
-    {
-        Time.timeScale = 0;
-    }
-
-    private void StartTime()
-    {
-        Time.timeScale = 1;
-    }
-
-    private void EnableGameOverScreen()
-    {
-        gameOverScreen.SetActive(true);
-    }
-
-    public void RestartScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        StartTime();
-    }
-
-    public void QuitApplication()
-    {
-        Application.Quit();
-    }
+    
 
 }
