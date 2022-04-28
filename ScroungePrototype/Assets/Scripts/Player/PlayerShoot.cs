@@ -99,7 +99,8 @@ public class PlayerShoot : MonoBehaviour
 
     private void LargeShot()
     {
-        GameObject largeBullet = Instantiate(largeBulletPrefab, firePoint.position, firePoint.rotation);
+        Vector3 bulletOffset = new Vector3(Random.Range(0f, 0.2f), Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
+        GameObject largeBullet = Instantiate(largeBulletPrefab, firePoint.position + bulletOffset, firePoint.rotation);
         Rigidbody2D rb = largeBullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
         StartCoroutine(ShootCooldownCoroutine());

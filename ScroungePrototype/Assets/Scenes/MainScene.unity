@@ -6422,9 +6422,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 970382977497168014, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: shootCD
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 970382977497168014, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: bulletForce
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 970382977497168015, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 970382977499483390, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
         type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 970382977499483390, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 970382977499483390, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
@@ -6476,6 +6496,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 970382978138386079, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 970382978138386079, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 130abbbb4fa12cb49b28b605c75aaa7e, type: 3}
