@@ -59,7 +59,8 @@ public class PlayerEat : MonoBehaviour
         //Attracts bullets towards player when eating and in range
         if (Input.GetButton("Fire2"))
         {
-            if (collision.gameObject.CompareTag("Bullet") && _isEating)
+            IAttractable attractable = collision.gameObject.GetComponentInChildren<IAttractable>();
+            if (attractable != null && _isEating)
             {
                 collision.transform.position = Vector2.MoveTowards(collision.transform.position, transform.position, suctionDistance * Time.deltaTime);
             }

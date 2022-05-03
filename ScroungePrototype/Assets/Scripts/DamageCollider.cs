@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageCollider : MonoBehaviour, IClearable
+public class DamageCollider : MonoBehaviour, IClearable, IEdible, IAttractable
 {
     public void Clear()
     {
         Destroy(gameObject);
+    }
+
+    public void Attract()
+    {
+
+    }
+
+    public void Eat()
+    {
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

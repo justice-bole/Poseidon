@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathActor: {fileID: 7371667673822119212, guid: 7ff68ce4c043bcd42b37b50adab9899e,
     type: 3}
+  gemPrefab: {fileID: 2117144476098108340, guid: c07b2e04975074a4d8ad493ea3019478,
+    type: 3}
 --- !u!114 &1424878576
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,14 +17,15 @@ public class DestroyBullet : MonoBehaviour
         playerSize = player.GetComponent<PlayerSize>();
     }
 
-    private void Update()
-    {
-        if(bulletsEaten >= 100)
-            bulletsEaten = 0;
-    }
+   
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        IEdible edible = collision.gameObject.GetComponentInChildren<IEdible>();
+        if (edible != null && playerEat.IsEating)
+        {
+            edible.Eat();
+        }
         if(collision.gameObject.CompareTag("Bullet") && playerEat.IsEating)
         {
             Destroy(collision.gameObject);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHit : MonoBehaviour, IDamageable, IClearable
 {
     [SerializeField] private GameObject deathActor;
+    [SerializeField] private GameObject gemPrefab;
     private Animator animator;
     private EnemySize enemySize;
     private bool mustClear = false;
@@ -32,7 +33,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     {
         StopCoroutine("JustHitCDCoroutine");
         StartCoroutine("JustHitCDCoroutine");
-        enemySize.ScaleUpEnemy(.02f);
+        enemySize.ScaleUpEnemy(.04f);
         bulletsStored++;
 
         if (transform.localScale.x >= enemySize.MaxScale)
@@ -44,10 +45,20 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
         if (enemyHealth <= 0 || mustClear)
         {
             PlayDeathAnimation();
+            SpawnGems();
             playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
             playerSize.IncreasePlayerScale(.1f);
             Destroy(gameObject);
         }
+    }
+
+    private void SpawnGems()
+    {
+        int random = Random.Range(0, 3);
+        for (int i = 0; i < random; i++)
+        {
+            Instantiate(gemPrefab, transform.position, Quaternion.identity);
+        }   
     }
 
     private void PlayDeathAnimation()
