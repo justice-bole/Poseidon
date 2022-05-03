@@ -7,6 +7,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     [SerializeField] private GameObject deathActor;
     private Animator animator;
     private EnemySize enemySize;
+    private bool mustClear = false;
     private int enemyHealth = 10;
     private int bulletsStored;
     private float justHitCD = 0.1f;
@@ -23,6 +24,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
 
     public void Clear()
     {
+        PlayDeathAnimation();
         Destroy(gameObject);
     }
 
@@ -39,7 +41,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
             enemyHealth--;
         }
 
-        if (enemyHealth <= 0)
+        if (enemyHealth <= 0 || mustClear)
         {
             PlayDeathAnimation();
             playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
@@ -47,8 +49,6 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
             Destroy(gameObject);
         }
     }
-
-    
 
     private void PlayDeathAnimation()
     {

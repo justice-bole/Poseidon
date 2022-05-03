@@ -127,19 +127,19 @@ public class PlayerShoot : MonoBehaviour
     {
         if(_ammunitionCount > 750)
         {
-            shootCD = 0.01f;
+            shootCD = 0.02f;
         }
         else if(_ammunitionCount < 750 && _ammunitionCount > 500)
         {
-            shootCD = .04f;
+            shootCD = .08f;
         }
         else if(_ammunitionCount < 500 && _ammunitionCount > 250)
         {
-            shootCD = .06f;
+            shootCD = .12f;
         }
         else
         {
-            shootCD = .1f;
+            shootCD = .20f;
         }
     }
 

@@ -5700,7 +5700,7 @@ GameObject:
   - component: {fileID: 976866971}
   - component: {fileID: 976866970}
   - component: {fileID: 976866972}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ClearArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6560,6 +6560,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 970382977497168014, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: shootCD
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 970382977497168014, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
+        type: 3}
+      propertyPath: bulletForce
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 970382977499483390, guid: 130abbbb4fa12cb49b28b605c75aaa7e,
         type: 3}

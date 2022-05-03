@@ -4976,7 +4976,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2039610097
@@ -5135,8 +5135,8 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 970382978138386079}
   playerEat: {fileID: 467454771}
-  bulletForce: 14
-  shootCD: 0.3
+  bulletForce: 7
+  shootCD: 0.6
 --- !u!114 &1811442701
 MonoBehaviour:
   m_ObjectHideFlags: 0
