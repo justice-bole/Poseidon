@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class EnemySize : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private float _maxScale = 2;
+    private float _maxScale = 1.5f;
     public float MaxScale { get { return _maxScale; } }
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void ScaleUpEnemy(float scaleIncrement)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHit : MonoBehaviour, IDamageable
+public class EnemyHit : MonoBehaviour, IDamageable, IClearable
 {
     [SerializeField] private GameObject deathActor;
     private Animator animator;
@@ -21,8 +21,9 @@ public class EnemyHit : MonoBehaviour, IDamageable
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();   
     }
 
-    public void Update()
+    public void Clear()
     {
+        Destroy(gameObject);
     }
 
     public void Damage()
@@ -46,6 +47,8 @@ public class EnemyHit : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
     }
+
+    
 
     private void PlayDeathAnimation()
     {

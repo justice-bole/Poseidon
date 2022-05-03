@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1347677577681252293}
   - component: {fileID: 6113347040051731373}
   - component: {fileID: 4254463411414888013}
+  - component: {fileID: -6554052042076178408}
   m_Layer: 0
-  m_Name: DeathActor
+  m_Name: SpawnActor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7371667673822119212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06754518, y: 0.54743505, z: 0.009350391}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +44,7 @@ Animator:
   m_GameObject: {fileID: 7371667673822119212}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ae6c113281a5bc943844d243e328ca1b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8574878a78106444991bded92e4c4c29, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -105,3 +106,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6554052042076178408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371667673822119212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55545bcb3fcc2164890e120d0316dbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 2400508356975059338, guid: efffbc3496a1b7142853457091a3ac79,
+    type: 3}

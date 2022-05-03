@@ -34,12 +34,12 @@ public class PlayerEat : MonoBehaviour
         }
         else if (Input.GetMouseButton(1))
         {
-            //animator.SetBool("isEating", true);
+            animator.SetBool("isEating", true);
             _isEating = true;
         }
         else if (!Input.GetMouseButton(1))
         {
-            //animator.SetBool("isEating", false);
+            animator.SetBool("isEating", false);
             _isEating = false;
         }
 

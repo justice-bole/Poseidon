@@ -69,7 +69,6 @@ public class PlayerHit : MonoBehaviour, IDamageable
             spriteRenderer.enabled = true;
             yield return new WaitForSeconds(.1f);
         }
-        //spriteRenderer.enabled = true;
     }
 
 }
