@@ -17,7 +17,7 @@ public class ToggleClearScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && gameManager.GemCount > 10)
+        if(Input.GetKeyDown(KeyCode.Space) && gameManager.GemCount >= 10)
         {
             StartCoroutine(ClearScreenCoroutine());
             gameManager.GemCount -= 10;
