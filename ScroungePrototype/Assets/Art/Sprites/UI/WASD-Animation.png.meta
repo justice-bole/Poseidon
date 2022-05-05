@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e72c84b4f07e3540a891ca3785a1dc1
+guid: 1fa4d0b4f83921c47b56eba94441c25a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -66,7 +66,19 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -77,8 +89,8 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 256
+    buildTarget: Server
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -92,118 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crosshair_0
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 40
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 877ff0ed0e6e1caa0800000000000000
-      internalID: -6142374563283994760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crosshair_1
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 42
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7afee45179c66cd0800000000000000
-      internalID: -2565141449147483526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crosshair_2
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 41
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1c720386dbf71fa0800000000000000
-      internalID: -5829914293868266466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crosshair_3
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 33.333336
-        width: 14.6
-        height: 16.666666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57056d4c04e81add0800000000000000
-      internalID: -2476541911245631371
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crosshair_4
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 33.333336
-        width: 14.6
-        height: 16.666666
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64882924e0c922700800000000000000
-      internalID: 514144892534032454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: crosshair_5
+      name: WASD-Animation_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 17.333334
-        width: 14.6
-        height: 16.666666
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd479eaf951e22600800000000000000
-      internalID: 442163490013672668
+      spriteID: f7a816a61f18637418464ece19b254bd
+      internalID: -59242034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crosshair_6
+      name: WASD-Animation_1
       rect:
         serializedVersion: 2
-        x: 14
-        y: 17.333334
-        width: 14.6
-        height: 16.666666
+        x: 48
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5597831fe9884cf00800000000000000
-      internalID: 1136183222237428053
+      spriteID: 0cba66d964ca846448d5885345206247
+      internalID: 1230244502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crosshair_7
+      name: WASD-Animation_2
       rect:
         serializedVersion: 2
-        x: 28
-        y: 17.333334
-        width: 14.6
-        height: 16.666666
+        x: 96
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0516d77027eac47d0800000000000000
-      internalID: -2932777452549873328
+      spriteID: 500e1cfcc2b611e4caf1c65b76f8cb4e
+      internalID: -376655354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crosshair_8
+      name: WASD-Animation_3
       rect:
         serializedVersion: 2
-        x: 42
-        y: 17.333334
-        width: 14.6
-        height: 16.666666
+        x: 144
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8add9c7d3ade50c60800000000000000
-      internalID: 7783888818935553448
+      spriteID: a1a02df3fa319bf408f3f593b076b467
+      internalID: -1070064242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crosshair_9
+      name: WASD-Animation_4
       rect:
         serializedVersion: 2
-        x: 56
-        y: 17.333334
-        width: 14.6
-        height: 16.666666
+        x: 192
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -295,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84f077215ee16ddd0800000000000000
-      internalID: -2461746177105260728
+      spriteID: 1e5c0d510e90efe44b81bdb13e768b91
+      internalID: -1806314342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crosshair_10
+      name: WASD-Animation_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1.333334
-        width: 14.6
-        height: 16.666666
+        x: 240
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,20 +223,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3769f4213504c260800000000000000
-      internalID: 7116819019784087358
+      spriteID: 626461dbf4d43db48b52e25cc303510a
+      internalID: 1459028909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crosshair_11
+      name: WASD-Animation_6
       rect:
         serializedVersion: 2
-        x: 14
-        y: 1.333334
-        width: 14.6
-        height: 16.666666
+        x: 288
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d24fab8c63518c9e0800000000000000
-      internalID: -1601006342490098643
+      spriteID: ba032dd8dcfda0d4ab4b5e5d40389efb
+      internalID: 300073668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crosshair_12
+      name: WASD-Animation_7
       rect:
         serializedVersion: 2
-        x: 28
-        y: 1.333334
-        width: 14.6
-        height: 16.666666
+        x: 336
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -358,8 +265,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 645497f6ad79e4f60800000000000000
-      internalID: 8020514950822315334
+      spriteID: ac58cf85e4b36654a882815a2baadeaa
+      internalID: -24279124
       vertices: []
       indices: 
       edges: []
@@ -375,19 +282,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      crosshair_10: 7116819019784087358
-      crosshair_3: -2476541911245631371
-      crosshair_8: 7783888818935553448
-      crosshair_4: 514144892534032454
-      crosshair_0: -6142374563283994760
-      crosshair_11: -1601006342490098643
-      crosshair_1: -2565141449147483526
-      crosshair_6: 1136183222237428053
-      crosshair_12: 8020514950822315334
-      crosshair_7: -2932777452549873328
-      crosshair_5: 442163490013672668
-      crosshair_9: -2461746177105260728
-      crosshair_2: -5829914293868266466
+      WASD-Animation_0: -59242034
+      WASD-Animation_6: 300073668
+      WASD-Animation_5: 1459028909
+      WASD-Animation_4: -1806314342
+      WASD-Animation_2: -376655354
+      WASD-Animation_7: -24279124
+      WASD-Animation_1: 1230244502
+      WASD-Animation_3: -1070064242
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
