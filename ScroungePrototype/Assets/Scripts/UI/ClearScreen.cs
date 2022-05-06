@@ -6,12 +6,9 @@ public class ClearScreen : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IClearable clearable = collision.gameObject.GetComponent<IClearable>();
-
-        if (clearable != null)
+        if (collision.gameObject.TryGetComponent(out IClearable clearable))
         {
-            Debug.Log("Screen Cleared!");
             clearable.Clear();
-        }          
+        }
     }
 }

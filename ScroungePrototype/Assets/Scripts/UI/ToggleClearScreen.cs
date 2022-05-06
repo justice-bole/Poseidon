@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ToggleClearScreen : MonoBehaviour
 {
+    //This script is seperated from "ClearScreen" because this script stores data when ClearScreen is turned off via clearScreen.SetActive(false)
+
     private GameObject clearScreen;
     private GameManager gameManager;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -14,14 +17,25 @@ public class ToggleClearScreen : MonoBehaviour
         clearScreen.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && gameManager.GemCount >= 10)
+        RequestToClearScreen();
+    }
+
+    private void RequestToClearScreen()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && gameManager.GemCount >= 10)
         {
-            StartCoroutine(ClearScreenCoroutine());
-            gameManager.GemCount -= 10;
+            ClearGameScreen();
         }
+    }
+
+    private void ClearGameScreen()
+    {
+
+        StartCoroutine(ClearScreenCoroutine());
+        gameManager.GemCount -= 10;
+
     }
 
     IEnumerator ClearScreenCoroutine()

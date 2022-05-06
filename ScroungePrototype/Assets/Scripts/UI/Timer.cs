@@ -21,7 +21,6 @@ public class Timer : MonoBehaviour
     private void IncrementTime()
     {
         _currentTime += (1 * Time.deltaTime);
-        //print(_currentTime.ToString("#.00"));
     }
 
     private void UpdateTimeUI()

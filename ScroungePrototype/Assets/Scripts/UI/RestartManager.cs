@@ -19,7 +19,6 @@ public class RestartManager : MonoBehaviour
         {
             gameOverScreen.SetActive(false);
         }
-        
     }
 
     public void StopTime()

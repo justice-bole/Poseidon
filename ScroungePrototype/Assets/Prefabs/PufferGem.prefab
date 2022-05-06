@@ -167,3 +167,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf8ab24895d85e4b9b474ecec277df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxGemLifetime: 10

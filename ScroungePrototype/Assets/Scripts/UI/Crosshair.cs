@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Crosshair : MonoBehaviour
 {
-    public Texture2D crosshairSprite;
+    [SerializeField] private Texture2D crosshairSprite;
     void Start()
     {
-        //Cursor.visible = false;
         Cursor.SetCursor(crosshairSprite, Vector2.zero, CursorMode.ForceSoftware);
     }
 }

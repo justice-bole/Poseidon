@@ -5,32 +5,35 @@ using UnityEngine;
 public class ViewControls : MonoBehaviour
 {
     private Animator leftClick, rightClick, w, a, s, d, spaceBar, playerShoot, playerEat, playerMove, playerClear;
-    private GameObject titleScreenUI;
-    private GameObject controlsScreenUI;
-    private GameObject playerMoveImage;
+    private GameObject titleScreenUI, controlsScreenUI, playerMoveImage;
     private Vector3 originalPosition;
+
     private void Awake()
     {
         titleScreenUI = GameObject.Find("TitleScreenUI");
         controlsScreenUI = GameObject.Find("ControlsScreenUI");
-
     }
 
     private void Start()
     {
         leftClick = GameObject.Find("LeftClick").GetComponent<Animator>();
         rightClick = GameObject.Find("RightClick").GetComponent<Animator>();
+
         w = GameObject.Find("W").GetComponent<Animator>();
         a = GameObject.Find("A").GetComponent<Animator>();
         s = GameObject.Find("S").GetComponent<Animator>();
         d = GameObject.Find("D").GetComponent<Animator>();
+
         spaceBar = GameObject.Find("SpaceBar").GetComponent<Animator>();
+
         playerShoot = GameObject.Find("PlayerShootClip").GetComponent<Animator>();
         playerEat = GameObject.Find("PlayerEatClip").GetComponent<Animator>();
         playerMove = GameObject.Find("PlayerMoveClip").GetComponent<Animator>();
         playerMoveImage = GameObject.Find("PlayerMoveClip");
         playerClear = GameObject.Find("PlayerClearClip").GetComponent<Animator>();
+
         controlsScreenUI.SetActive(false);
+
         originalPosition = playerMoveImage.transform.position;
     }
 
@@ -161,6 +164,5 @@ public class ViewControls : MonoBehaviour
             ShowTitleScreen();
         }
     }    
-
 
 }

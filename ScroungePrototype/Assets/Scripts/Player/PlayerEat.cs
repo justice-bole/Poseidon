@@ -4,28 +4,19 @@ using UnityEngine;
 
 public class PlayerEat : MonoBehaviour
 {
+    [SerializeField] private PlayerShoot playerShoot;
+    [SerializeField] private int suctionDistance = 10;
 
-    private Animator animator;
     private bool _isEating = false;
     public bool IsEating { get { return _isEating; } }
 
-    private int suctionDistance = 10;
-  
-    [SerializeField] private ParticleSystem suctionParticle;
-    [SerializeField] private PlayerShoot playerShoot;
-
-
-    private void Awake()
-    {
-        animator = GameObject.Find("PlayerAnimation").GetComponent<Animator>();
-    }
 
     private void Update()
     {
-        PlayerAnimationState();
+        CheckIfEating();
     }
 
-    private void PlayerAnimationState()
+    private void CheckIfEating()
     {
         if (Input.GetMouseButton(0))
         {
@@ -34,24 +25,13 @@ public class PlayerEat : MonoBehaviour
         }
         else if (Input.GetMouseButton(1))
         {
-            animator.SetBool("isEating", true);
             _isEating = true;
         }
         else if (!Input.GetMouseButton(1))
         {
-            animator.SetBool("isEating", false);
             _isEating = false;
         }
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            suctionParticle.Play();
-        }
-
-        if (Input.GetButtonUp("Fire2"))
-        {
-            suctionParticle.Stop();
-        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

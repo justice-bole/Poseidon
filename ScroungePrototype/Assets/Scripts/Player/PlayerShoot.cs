@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public GameObject largeBulletPrefab;
-    public Transform firePoint;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject largeBulletPrefab;
+    [SerializeField] private Transform firePoint;
 
     [SerializeField] private PlayerEat playerEat;
     [SerializeField] private float bulletForce = 20f;
@@ -73,28 +73,18 @@ public class PlayerShoot : MonoBehaviour
     private void Shoot()
     {
         animator.SetBool("isShooting", true);
-        if(bulletCount % 20 == 0)
+        if (bulletCount % 20 == 0)
         {
             playerSize.DecreasePlayerScale(0.05f);
         }
+        Vector3 bulletOffset = new Vector3(Random.Range(0f, 0.2f), Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position + bulletOffset, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+        StartCoroutine(ShootCooldownCoroutine());
 
-        if (bulletCount % 2 == 0)
-        {
-            LargeShot();
-        }
-        else
-        {
-            Vector3 bulletOffset = new Vector3(Random.Range(0f, 0.2f), Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position + bulletOffset, firePoint.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
-            StartCoroutine(ShootCooldownCoroutine());
-
-            bulletCount++;
-            _ammunitionCount--;
-            print(_ammunitionCount);
-        }
-
+        bulletCount++;
+        _ammunitionCount--;
     }
 
     private IEnumerator ShootCooldownCoroutine()
@@ -125,15 +115,15 @@ public class PlayerShoot : MonoBehaviour
 
     private void CalculateShotCooldown()
     {
-        if(_ammunitionCount > 750)
+        if (_ammunitionCount > 750)
         {
             shootCD = 0.02f;
         }
-        else if(_ammunitionCount < 750 && _ammunitionCount > 500)
+        else if (_ammunitionCount < 750 && _ammunitionCount > 500)
         {
             shootCD = .08f;
         }
-        else if(_ammunitionCount < 500 && _ammunitionCount > 250)
+        else if (_ammunitionCount < 500 && _ammunitionCount > 250)
         {
             shootCD = .12f;
         }

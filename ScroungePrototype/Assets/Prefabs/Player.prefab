@@ -5114,8 +5114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528ad139975a9a648998c4f02d7f6d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suctionParticle: {fileID: 1054219050}
   playerShoot: {fileID: 970382977497168014}
+  suctionDistance: 10
 --- !u!114 &970382977497168014
 MonoBehaviour:
   m_ObjectHideFlags: 0
