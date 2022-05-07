@@ -12,7 +12,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float shootCD = .6f;
 
     private Animator animator;
-    private PlayerSize playerSize;
+    private GameObject player;
+    private ScaleManager scaleManager;
     private int bulletCount = 0;
     private int _ammunitionCount = 500;
 
@@ -44,8 +45,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
         animator = GameObject.Find("PlayerAnimation").GetComponent<Animator>();
-        playerSize = GetComponent<PlayerSize>();
+        scaleManager = GameObject.Find("ScaleManager").GetComponent<ScaleManager>();
     }
 
     private void Update()
@@ -75,7 +77,7 @@ public class PlayerShoot : MonoBehaviour
         animator.SetBool("isShooting", true);
         if (bulletCount % 20 == 0)
         {
-            playerSize.DecreasePlayerScale(0.05f);
+            scaleManager.ChangeObjectScale(player, 0.05f);
         }
         Vector3 bulletOffset = new Vector3(Random.Range(0f, 0.2f), Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position + bulletOffset, firePoint.rotation);

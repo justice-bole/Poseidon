@@ -7,19 +7,17 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     [SerializeField] private GameObject deathActor;
     [SerializeField] private GameObject gemPrefab;
     private Animator animator;
-    private EnemySize enemySize;
     private bool mustClear = false;
     private int enemyHealth = 10;
     private int bulletsStored;
     private float justHitCD = 0.1f;
     private PlayerShoot playerShoot;
-    private PlayerSize playerSize;
+    private ScaleManager scaleManager;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        enemySize = GetComponent<EnemySize>();
-        playerSize = GameObject.Find("Player").GetComponent<PlayerSize>();
+        scaleManager = GameObject.Find("ScaleManager").GetComponent<ScaleManager>();
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();   
     }
 
@@ -31,12 +29,12 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
 
     public void Damage()
     {
-        StopCoroutine("JustHitCDCoroutine");
-        StartCoroutine("JustHitCDCoroutine");
-        enemySize.ScaleUpEnemy(.04f);
+        StopCoroutine(JustHitCDCoroutine());
+        StartCoroutine(JustHitCDCoroutine());
+        scaleManager.ChangeObjectScale(this.gameObject, .04f);
         bulletsStored++;
 
-        if (transform.localScale.x >= enemySize.MaxScale)
+        if (transform.localScale.x >= 1.5f)
         {
             animator.SetBool("isVulnerable", true);
             enemyHealth--;
@@ -47,7 +45,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
             PlayDeathAnimation();
             SpawnGems();
             playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
-            playerSize.IncreasePlayerScale(.1f);
+            scaleManager.ChangeObjectScale(this.gameObject, .1f);
             Destroy(gameObject);
         }
     }

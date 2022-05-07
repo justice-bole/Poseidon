@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour, IClearable, IEdible, IAttractable
 {
+    private GameObject player;
     private PlayerEat playerEat;
     private PlayerShoot playerShoot;
-    private PlayerSize playerSize;
+    private ScaleManager scaleManager;
     private int bulletsEaten;
 
     private void Awake()
     {
-        GameObject player = GameObject.Find("Player");
+        player = GameObject.Find("Player");
         playerShoot = player.GetComponent<PlayerShoot>();
-        playerSize = player.GetComponent<PlayerSize>();
+        scaleManager = GameObject.Find("ScaleManager").GetComponent<ScaleManager>();
         playerEat = player.GetComponent<PlayerEat>();
     }
 
@@ -29,14 +30,14 @@ public class BulletManager : MonoBehaviour, IClearable, IEdible, IAttractable
 
     public void Eat()
     {
-        Destroy(gameObject);
         bulletsEaten++;
         playerShoot.AmmunitionCount++;
         print(playerShoot.AmmunitionCount);
         if (bulletsEaten % 20 == 0)
         {
-            playerSize.IncreasePlayerScale(0.01f);
+            scaleManager.ChangeObjectScale(player, 0.01f);
         }
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

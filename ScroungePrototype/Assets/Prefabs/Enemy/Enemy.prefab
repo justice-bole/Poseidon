@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2400508356975059337}
   - component: {fileID: 2400508356975059341}
   - component: {fileID: 7742932092569131587}
-  - component: {fileID: 1424878576}
   - component: {fileID: 5466968120929619932}
   - component: {fileID: 3806193818296139759}
   - component: {fileID: -2180636268362919692}
@@ -137,18 +136,6 @@ MonoBehaviour:
     type: 3}
   gemPrefab: {fileID: 2117144476098108340, guid: c07b2e04975074a4d8ad493ea3019478,
     type: 3}
---- !u!114 &1424878576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2400508356975059338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317e04bb27f14a14bb22c73b7b7e90c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5466968120929619932
 MonoBehaviour:
   m_ObjectHideFlags: 0
