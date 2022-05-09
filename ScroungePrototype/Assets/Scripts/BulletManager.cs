@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour, IClearable, IEdible, IAttractable
 {
+    [SerializeField] private GameObject bulletHitActor;
     private GameObject player;
     private PlayerEat playerEat;
     private PlayerShoot playerShoot;
@@ -40,6 +41,12 @@ public class BulletManager : MonoBehaviour, IClearable, IEdible, IAttractable
         Destroy(gameObject);
     }
 
+    private void playHitAnimation()
+    {
+        var hitAnimation = Instantiate(bulletHitActor, transform.position, transform.rotation);
+        Destroy(hitAnimation, .2f);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IDamageable damageable = collision.gameObject.GetComponentInChildren<IDamageable>();
@@ -47,6 +54,7 @@ public class BulletManager : MonoBehaviour, IClearable, IEdible, IAttractable
         {
             if (collision.gameObject.CompareTag("Player") && playerEat.IsEating) return;
             damageable.Damage();
+            playHitAnimation();
             Destroy(gameObject);
         }
         

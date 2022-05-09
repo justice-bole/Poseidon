@@ -8,8 +8,8 @@ public class GemSpawner : MonoBehaviour
 
     public void SpawnGems(GameObject objectToSpawnOn)
     {
-        int random = Random.Range(0, 3);
-        for (int i = 0; i < random; i++)
+        int random = Random.Range(0, 10);
+        if (random == 5)
         {
             Instantiate(gemPrefab, objectToSpawnOn.transform.position, Quaternion.identity);
         }
