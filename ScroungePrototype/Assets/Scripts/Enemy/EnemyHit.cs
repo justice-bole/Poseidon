@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyHit : MonoBehaviour, IDamageable, IClearable
 {
     [SerializeField] private GameObject deathActor;
-    [SerializeField] private GameObject gemPrefab;
+ 
+    private GameObject player;
     private Animator animator;
     private bool mustClear = false;
     private int enemyHealth = 10;
@@ -13,11 +14,14 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     private float justHitCD = 0.1f;
     private PlayerShoot playerShoot;
     private ScaleManager scaleManager;
+    private GemSpawner gemSpawner;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        gemSpawner = GameObject.Find("GemSpawner").GetComponent<GemSpawner>();
         scaleManager = GameObject.Find("ScaleManager").GetComponent<ScaleManager>();
+        player = GameObject.Find("Player");
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();   
     }
 
@@ -31,32 +35,34 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     {
         StopCoroutine(JustHitCDCoroutine());
         StartCoroutine(JustHitCDCoroutine());
-        scaleManager.ChangeObjectScale(this.gameObject, .04f);
+        scaleManager.ChangeObjectScale(gameObject, .04f);
         bulletsStored++;
+        CheckVulnerability();
+        CheckIfDead();
+    }
 
+    private void CheckVulnerability()
+    {
         if (transform.localScale.x >= 1.5f)
         {
             animator.SetBool("isVulnerable", true);
             enemyHealth--;
         }
+    }
 
+    private void CheckIfDead()
+    {
         if (enemyHealth <= 0 || mustClear)
         {
             PlayDeathAnimation();
-            SpawnGems();
+            gemSpawner.SpawnGems(this.gameObject);
             playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
-            scaleManager.ChangeObjectScale(this.gameObject, .1f);
+            if(player.transform.localScale.x <= 1.25f)
+            {
+                scaleManager.ChangeObjectScale(player, .1f);
+            }
             Destroy(gameObject);
         }
-    }
-
-    private void SpawnGems()
-    {
-        int random = Random.Range(0, 3);
-        for (int i = 0; i < random; i++)
-        {
-            Instantiate(gemPrefab, transform.position, Quaternion.identity);
-        }   
     }
 
     private void PlayDeathAnimation()

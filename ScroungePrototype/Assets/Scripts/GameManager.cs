@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject playerPrefab;
     private int _gemCount;
     public int GemCount { get { return _gemCount; } set { _gemCount = value; } }
 
@@ -30,4 +31,5 @@ public class GameManager : MonoBehaviour
             gemIcon.SetActive(false);
         }
     }
+
 }

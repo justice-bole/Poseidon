@@ -77,7 +77,7 @@ public class PlayerShoot : MonoBehaviour
         animator.SetBool("isShooting", true);
         if (bulletCount % 20 == 0)
         {
-            scaleManager.ChangeObjectScale(player, 0.05f);
+            scaleManager.ChangeObjectScale(player, -0.05f);
         }
         Vector3 bulletOffset = new Vector3(Random.Range(0f, 0.2f), Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position + bulletOffset, firePoint.rotation);

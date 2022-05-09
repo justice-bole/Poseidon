@@ -9,5 +9,4 @@ public class ScaleManager : MonoBehaviour
         var scale = objectToScale.transform.localScale;
         objectToScale.transform.localScale = new Vector2(scale.x + addToScale, scale.y + addToScale);
     }
-
 }

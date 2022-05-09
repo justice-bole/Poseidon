@@ -53,5 +53,4 @@ public class GemManager : MonoBehaviour, IEdible, IAttractable
     {
         gemLifeTime += 1 * Time.deltaTime;
     }
-
 }
