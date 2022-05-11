@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
     public int GemCount { get { return _gemCount; } set { _gemCount = value; } }
 
     private GameObject gemIcon;
+    private ToggleClearScreen toggleClearScreen; 
 
     private void Awake()
     {
         gemIcon = GameObject.Find("GemIcon");
+        toggleClearScreen = GameObject.Find("ClearAreaManager").GetComponent<ToggleClearScreen>();
     }
 
     private void Start()
@@ -22,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(GemCount >= 10)
+        if(GemCount >= toggleClearScreen.FishNeededToClearScreen)
         {
             gemIcon.SetActive(true);
         }

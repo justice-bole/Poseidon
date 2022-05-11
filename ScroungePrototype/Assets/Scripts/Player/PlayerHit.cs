@@ -13,12 +13,14 @@ public class PlayerHit : MonoBehaviour, IDamageable
     private GameObject player;
     private RestartManager restartManager;
     private SpriteRenderer spriteRenderer;
+    private Dash dash;
 
     private void Awake()
     {
         spriteRenderer = GameObject.Find("PlayerAnimation").GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player");
         restartManager = GameObject.Find("RestartManager").GetComponent<RestartManager>();
+        dash = player.GetComponent<Dash>();
     }
 
     private void Update()
@@ -29,6 +31,7 @@ public class PlayerHit : MonoBehaviour, IDamageable
     public void Damage()
     {
         if (canBeDamaged == false) return;
+        if (dash.IsDashing) return;
         playerHealth--;
         DecrementHealthUI();
         StartCoroutine(ImmunityCooldownCoroutine(immunityTime));
@@ -66,6 +69,18 @@ public class PlayerHit : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(pauseDuration);
             spriteRenderer.enabled = true;
             yield return new WaitForSeconds(pauseDuration);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(dash.IsDashing)
+        {
+            var enemyVelocity = collision.gameObject.GetComponent<Rigidbody2D>();
+            if(enemyVelocity != null)
+            {
+                enemyVelocity.AddForce(collision.transform.position * 300 * Time.deltaTime);
+            }
         }
     }
 

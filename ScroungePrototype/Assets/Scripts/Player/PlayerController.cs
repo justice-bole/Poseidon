@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Vector2 MousePos;
+
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float mousePlayerDeadZone = 0.5f;
     private Camera cam;
+    private Dash dash;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private Vector2 mousePos;
     private Vector2 movement;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        dash = GetComponent<Dash>();
         spriteRenderer = GameObject.Find("PlayerAnimation").GetComponent<SpriteRenderer>();
     }
     private void Update()
@@ -26,7 +30,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         FixedMove();
+        if (CalculateMouseDistance() < mousePlayerDeadZone) return; //optional deadzone
+        
         FaceMousePosition();
     }
 
@@ -43,12 +50,18 @@ public class PlayerController : MonoBehaviour
 
     private void GetMousePosition()
     {
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private float CalculateMouseDistance()
+    {
+        float mouseDistance = Vector2.Distance(transform.position, MousePos);
+        return mouseDistance;
     }
 
     private void FaceMousePosition()
     {
-        Vector2 lookDir = mousePos - rb.position;
+        Vector3 lookDir = MousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
     }

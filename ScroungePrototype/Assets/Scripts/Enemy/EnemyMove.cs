@@ -7,11 +7,13 @@ public class EnemyMove : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 2;
     private Rigidbody2D rb;
-    private Vector2 lastVelocity;
+    private EnemyHit hit;
+    public Vector2 LastVelocity;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        hit = GetComponent<EnemyHit>();
         
         int randomNumber = Random.Range(0, 3);
 
@@ -32,11 +34,11 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        lastVelocity = rb.velocity;
-        var speed = lastVelocity.magnitude;
-        var direction = new Vector2(lastVelocity.normalized.x, lastVelocity.normalized.y);
+        LastVelocity = rb.velocity;
+        var speed = LastVelocity.magnitude;
+        var direction = new Vector2(LastVelocity.normalized.x, LastVelocity.normalized.y);
         rb.velocity = direction * Mathf.Max(speed, 2f);
     }
 
@@ -44,9 +46,11 @@ public class EnemyMove : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
         {
-            var speed = lastVelocity.magnitude;
-            var direction = Vector2.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
+            hit.DestroyIfGoingTooFast(collision);
+            var speed = LastVelocity.magnitude;
+            var direction = Vector2.Reflect(LastVelocity.normalized, collision.contacts[0].normal);
             rb.velocity = direction * Mathf.Max(speed, 0f);
+            print(speed);
         } 
     }
 

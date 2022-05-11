@@ -45,7 +45,7 @@ public class WaveSpawner : MonoBehaviour
 
     private float CalculateEnemySpawnRate()
     {
-        float enemySpawnRate = baseSpawnRate - (timer.CurrentTime * .1f);
+        float enemySpawnRate = baseSpawnRate - (timer.CurrentTime * .05f);
         float clampedSpawnRate = Mathf.Clamp(enemySpawnRate, 2, baseSpawnRate);
         //print("Enemy Current Spawn Rate: " + clampedSpawnRate);
         return clampedSpawnRate;

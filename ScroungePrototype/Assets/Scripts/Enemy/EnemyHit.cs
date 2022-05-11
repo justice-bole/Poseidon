@@ -15,10 +15,12 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     private PlayerShoot playerShoot;
     private ScaleManager scaleManager;
     private GemSpawner gemSpawner;
+    private EnemyMove enemyMove;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        enemyMove = GetComponent<EnemyMove>();
         gemSpawner = GameObject.Find("GemSpawner").GetComponent<GemSpawner>();
         scaleManager = GameObject.Find("ScaleManager").GetComponent<ScaleManager>();
         player = GameObject.Find("Player");
@@ -69,6 +71,23 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     {
         var deathAnimation = Instantiate(deathActor, transform.position, Quaternion.identity);
         Destroy(deathAnimation, .7f);
+    }
+
+    public void DestroyIfGoingTooFast(Collision2D collision)
+    {
+        if (enemyMove.LastVelocity.magnitude > 8f)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                IClearable clearable = collision.gameObject.GetComponent<IClearable>();
+                if (clearable != null)
+                {
+                    clearable.Clear();
+                }
+            }
+
+            Clear();
+        }      
     }
 
     private IEnumerator JustHitCDCoroutine()
