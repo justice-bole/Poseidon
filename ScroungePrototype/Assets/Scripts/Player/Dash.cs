@@ -9,6 +9,7 @@ public class Dash : MonoBehaviour
     [SerializeField] private float dashForce = 100f;
     [SerializeField] private float dashCooldown = 5f;
     [SerializeField] private float dashDuration = 1;
+    private Transform dashPoint;
 
     private bool canDash = true;
     private Rigidbody2D rb;
@@ -19,33 +20,31 @@ public class Dash : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerController = GetComponent<PlayerController>();
+        dashPoint = GameObject.Find("DashPoint").transform;
     }
 
     private void Update()
+    {
+       
+    }
+
+    private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.Space))
         {
             if (canDash)
             {
-                DoDash();
                 StartCoroutine(DashCooldownCoroutine());
+                DoDash();
             }
         }
     }
 
-    private Vector2 CalculateDashDirection()
-    {
-
-        Vector2 mousePosition = playerController.MousePos;
-        var dashDirection = mousePosition - rb.position;
-        return dashDirection.normalized;
-
-
-    }
-
     private void DoDash()
     {
-        rb.AddForce(CalculateDashDirection() * dashForce * Time.deltaTime);
+        var lerpDashForce = Mathf.Lerp(1, dashForce, .9f);
+        //rb.AddForce(dashPoint.right.normalized * dashForce * Time.deltaTime);
+        rb.velocity = dashPoint.right.normalized * lerpDashForce * Time.deltaTime;
     }
 
     IEnumerator DashCooldownCoroutine()

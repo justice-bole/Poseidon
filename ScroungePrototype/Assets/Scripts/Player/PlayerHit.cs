@@ -79,7 +79,8 @@ public class PlayerHit : MonoBehaviour, IDamageable
             var enemyVelocity = collision.gameObject.GetComponent<Rigidbody2D>();
             if(enemyVelocity != null)
             {
-                enemyVelocity.AddForce(collision.transform.position * 300 * Time.deltaTime);
+                //enemyVelocity.AddForce(collision.transform.position * 3000 * Time.deltaTime)
+                enemyVelocity.velocity *= 2;
             }
         }
     }

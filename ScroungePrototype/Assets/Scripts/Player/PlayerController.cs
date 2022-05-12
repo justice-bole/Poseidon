@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (dash.IsDashing) return;
         DefineMovement();
         GetMousePosition();
         FlipSpriteY();
@@ -30,10 +31,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if(dash.IsDashing) return;
         FixedMove();
         if (CalculateMouseDistance() < mousePlayerDeadZone) return; //optional deadzone
-        
         FaceMousePosition();
     }
 
