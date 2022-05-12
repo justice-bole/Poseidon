@@ -14,6 +14,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     private int bulletsStored;
     private float justHitCD = 0.1f;
     private PlayerShoot playerShoot;
+    private Rigidbody2D rb;
     private ScaleManager scaleManager;
     private GemSpawner gemSpawner;
     private EnemyMove enemyMove;
@@ -23,6 +24,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
         animator = GetComponent<Animator>();
         enemyMove = GetComponent<EnemyMove>();
         gemSpawner = GameObject.Find("GemSpawner").GetComponent<GemSpawner>();
+        rb = GetComponent<Rigidbody2D>();
         scaleManager = GameObject.Find("ScaleManager").GetComponent<ScaleManager>();
         player = GameObject.Find("Player");
         playerShoot = GameObject.Find("Player").GetComponent<PlayerShoot>();   
@@ -82,6 +84,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
 
     private void SpawnBulletFish()
     {
+        if (bulletFishPrefab == null) return;
         for (int i = 0; i < bulletsStored + 10; i++)
         {
             var radians = 2 * Mathf.PI / bulletsStored * i;
@@ -89,10 +92,15 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
             var vertical = Mathf.Sin(radians);
             var horizontal = Mathf.Cos(radians);
 
-            var spawnDir = new Vector3(horizontal, vertical);
+            var spawnDir = new Vector2(horizontal, vertical);
 
-            var spawnPos = transform.position + spawnDir * .8f;
+            var spawnPos = rb.position + spawnDir * .8f;
             var enemy = Instantiate(bulletFishPrefab, spawnPos, Quaternion.identity) as GameObject;
+            var enemyRB = enemy.GetComponent<Rigidbody2D>();
+            Vector2 lookDir = enemyRB.position - rb.position;
+            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+            enemyRB.rotation = angle;
+            enemyRB.AddForce(lookDir * 1000 * Time.deltaTime);
         }
     }
 
