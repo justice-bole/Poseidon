@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHit : MonoBehaviour, IDamageable, IClearable
 {
     [SerializeField] private GameObject deathActor;
+    [SerializeField] private GameObject bulletFishPrefab;
  
     private GameObject player;
     private Animator animator;
@@ -58,11 +59,9 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
         {
             PlayDeathAnimation();
             gemSpawner.SpawnGems(this.gameObject);
-            playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
-            if(player.transform.localScale.x <= 1.25f)
-            {
-                scaleManager.ChangeObjectScale(player, .1f);
-            }
+            //playerShoot.AmmunitionCount += bulletsStored + (int)Mathf.Round(bulletsStored * .25f);
+            SpawnBulletFish();
+            ScalePlayer();
             Destroy(gameObject);
         }
     }
@@ -71,6 +70,30 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     {
         var deathAnimation = Instantiate(deathActor, transform.position, Quaternion.identity);
         Destroy(deathAnimation, .7f);
+    }
+
+    private void ScalePlayer()
+    {
+        if (player.transform.localScale.x <= 1.25f)
+        {
+            scaleManager.ChangeObjectScale(player, .1f);
+        }
+    }
+
+    private void SpawnBulletFish()
+    {
+        for (int i = 0; i < bulletsStored + 10; i++)
+        {
+            var radians = 2 * Mathf.PI / bulletsStored * i;
+
+            var vertical = Mathf.Sin(radians);
+            var horizontal = Mathf.Cos(radians);
+
+            var spawnDir = new Vector3(horizontal, vertical);
+
+            var spawnPos = transform.position + spawnDir * .8f;
+            var enemy = Instantiate(bulletFishPrefab, spawnPos, Quaternion.identity) as GameObject;
+        }
     }
 
     public void DestroyIfGoingTooFast(Collision2D collision)
