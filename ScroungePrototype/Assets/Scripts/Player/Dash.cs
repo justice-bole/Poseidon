@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dash : MonoBehaviour
 {
     public bool IsDashing = false;
+    public Slider dashSlider;
 
     [SerializeField] private float dashForce = 100f;
     [SerializeField] private float dashCooldown = 5f;
@@ -12,6 +14,7 @@ public class Dash : MonoBehaviour
     private Transform dashPoint;
 
     private bool canDash = true;
+    private float dashCDCurrent;
     private Rigidbody2D rb;
     private PlayerController playerController;
 
@@ -23,9 +26,14 @@ public class Dash : MonoBehaviour
         dashPoint = GameObject.Find("DashPoint").transform;
     }
 
+    private void Start()
+    {
+        dashCDCurrent = 5;
+    }
+
     private void Update()
     {
-       
+        UpdateDashSlider();
     }
 
     private void FixedUpdate()
@@ -45,6 +53,21 @@ public class Dash : MonoBehaviour
         var lerpDashForce = Mathf.Lerp(1, dashForce, .9f);
         //rb.AddForce(dashPoint.right.normalized * dashForce * Time.deltaTime);
         rb.velocity = dashPoint.right.normalized * lerpDashForce * Time.deltaTime;
+    }
+
+    private void UpdateDashSlider()
+    {
+        if(!IsDashing)
+        {
+            dashCDCurrent += Time.deltaTime;
+            dashCDCurrent = Mathf.Clamp(dashCDCurrent, 0.0f, dashCooldown);
+        }
+        else
+        {
+            dashCDCurrent = 0;
+        }
+
+        dashSlider.value = dashCDCurrent / dashCooldown;
     }
 
     IEnumerator DashCooldownCoroutine()

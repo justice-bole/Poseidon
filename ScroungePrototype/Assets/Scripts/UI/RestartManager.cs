@@ -45,6 +45,13 @@ public class RestartManager : MonoBehaviour
     public void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");
+        StartTime();
+    }
+
+    public void LoadStartScene()
+    {
+        SceneManager.LoadScene("StartScreenScene");
+        StartTime();
     }
 
     public void QuitApplication()

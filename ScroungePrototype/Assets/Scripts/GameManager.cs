@@ -8,29 +8,29 @@ public class GameManager : MonoBehaviour
     private int _gemCount;
     public int GemCount { get { return _gemCount; } set { _gemCount = value; } }
 
-    private GameObject gemIcon;
+    //private GameObject gemIcon;
     private ToggleClearScreen toggleClearScreen; 
 
     private void Awake()
     {
-        gemIcon = GameObject.Find("GemIcon");
+        //gemIcon = GameObject.Find("GemIcon");
         toggleClearScreen = GameObject.Find("ClearAreaManager").GetComponent<ToggleClearScreen>();
     }
 
     private void Start()
     {
-        gemIcon.SetActive(false);
+        //gemIcon.SetActive(false);
     }
 
     private void Update()
     {
         if(GemCount >= toggleClearScreen.FishNeededToClearScreen)
         {
-            gemIcon.SetActive(true);
+            //gemIcon.SetActive(true);
         }
         else
         {
-            gemIcon.SetActive(false);
+            //gemIcon.SetActive(false);
         }
     }
 

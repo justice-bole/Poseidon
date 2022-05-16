@@ -41,7 +41,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
         StopCoroutine(JustHitCDCoroutine());
         StartCoroutine(JustHitCDCoroutine());
         scaleManager.ChangeObjectScale(gameObject, .04f);
-        bulletsStored++;
+        bulletsStored += 1;
         CheckVulnerability();
         CheckIfDead();
     }
