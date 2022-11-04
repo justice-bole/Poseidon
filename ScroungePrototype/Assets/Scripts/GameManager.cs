@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     {
         //gemIcon = GameObject.Find("GemIcon");
         toggleClearScreen = GameObject.Find("ClearAreaManager").GetComponent<ToggleClearScreen>();
-    }
+    }                                                                            
 
     private void Start()
     {

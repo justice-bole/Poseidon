@@ -27,7 +27,11 @@ public class AnimationManager : MonoBehaviour
         if (playerEat.IsEating)
         {
             animator.SetBool("isEating", true);
-            suctionParticle.Play();
+            if(suctionParticle.isStopped)
+            {
+                suctionParticle.Play();     
+            }
+            
         }
         else
         {

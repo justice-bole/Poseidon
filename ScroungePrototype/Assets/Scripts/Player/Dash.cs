@@ -10,7 +10,7 @@ public class Dash : MonoBehaviour
 
     [SerializeField] private float dashForce = 100f;
     [SerializeField] private float dashCooldown = 5f;
-    [SerializeField] private float dashDuration = 1;
+    [SerializeField] private float dashDuration = 1f;
     private Transform dashPoint;
 
     private bool canDash = true;
@@ -38,26 +38,24 @@ public class Dash : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && canDash)
         {
-            if (canDash)
-            {
-                StartCoroutine(DashCooldownCoroutine());
-                DoDash();
-            }
+
+            StartCoroutine(DashCooldownCoroutine());
+            DoDash();
+
         }
     }
 
     private void DoDash()
     {
         var lerpDashForce = Mathf.Lerp(1, dashForce, .9f);
-        //rb.AddForce(dashPoint.right.normalized * dashForce * Time.deltaTime);
         rb.velocity = dashPoint.right.normalized * lerpDashForce * Time.deltaTime;
     }
 
     private void UpdateDashSlider()
     {
-        if(!IsDashing)
+        if (!IsDashing)
         {
             dashCDCurrent += Time.deltaTime;
             dashCDCurrent = Mathf.Clamp(dashCDCurrent, 0.0f, dashCooldown);

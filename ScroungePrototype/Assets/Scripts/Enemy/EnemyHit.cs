@@ -11,6 +11,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     private Animator animator;
     private bool mustClear = false;
     private int enemyHealth = 10;
+    private int enemySpawnAmount = 20;
     private int bulletsStored;
     private float justHitCD = 0.1f;
     private PlayerShoot playerShoot;
@@ -85,7 +86,7 @@ public class EnemyHit : MonoBehaviour, IDamageable, IClearable
     private void SpawnBulletFish()
     {
         if (bulletFishPrefab == null) return;
-        for (int i = 0; i < bulletsStored + 10; i++)
+        for (int i = 0; i < enemySpawnAmount; i++)
         {
             var radians = 2 * Mathf.PI / bulletsStored * i;
 
