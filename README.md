@@ -3,7 +3,7 @@ Poseidon is an underwater endless shooter where your bullets bite back! Survive 
 
 **Link to project:** https://justice-bole.itch.io/poseidon
 
-![alt tag](https://github.com/justice-bole/Poseidon/blob/main/PoseidonProject/Assets/Art/Gifs/Poseidon.gif)
+![alt tag](https://github.com/justice-bole/Poseidon/blob/main/Assets/Art/Gifs/Poseidon.gif)
 
 ## How It's Made:
 
